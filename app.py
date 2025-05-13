@@ -161,8 +161,8 @@ def process_admin_commands(command):
         session['post_data']['content'].append(command)
         content_preview = '\n'.join(session['post_data']['content'][-3:])
         return (
-            f"Conteúdo adicionado (linha {len(session['post_data']['content'])})\n"
-            f"Últimas linhas:\n{content_preview}\n"
+            f"Conteúdo adicionado (linha {len(session['post_data']['content'])})\\n"
+            f"Últimas linhas:\\n{content_preview}\\n"
             f"Continue digitando ou use /salvar"
         )
     
@@ -192,15 +192,18 @@ def save_post():
         return f"Erro ao salvar: {str(e)}"
 
 def format_post(post):
+    
+    content = '\n'.join(post.get('content', [])) 
+
     return f"""
-{post['title'].upper()}
-{post['date'].strftime('%d/%m/%Y %H:%M')}
-━━━━━━━━━━━━━━━━━━
-{'\n'.join(post.get('content', []))}
-━━━━━━━━━━━━━━━━━━
-ID: {post['id_str']}
-Tags: {', '.join(post.get('tags', [])) or 'Nenhuma'}
-""".strip()
+    {post['title'].upper()}
+    {post['date'].strftime('%d/%m/%Y %H:%M')}
+    ━━━━━━━━━━━━━━━━━━
+    {content}  
+    ━━━━━━━━━━━━━━━━━━
+    ID: {post['id_str']}
+    Tags: {', '.join(post.get('tags', [])) or 'Nenhuma'}
+    """.strip()
 
 def help_text():
     general_help = """
@@ -211,7 +214,7 @@ COMANDOS DISPONÍVEIS:
 /view <id>     - Visualiza post específico
 /sobre         - Informações sobre o autor
 /login <senha> - Login admin
-""".strip()
+    """.strip()
     
     admin_help = """
 COMANDOS ADMIN:
@@ -222,10 +225,10 @@ COMANDOS ADMIN:
 /title <texto> - Definir título
 /type <tipo>   - Escolher tipo <diario, projeto, reflexao, arte>
 /tags <lista>  - Adicionar tags <separadas por vírgula>
-""".strip()
+    """.strip()
     
     if session.get('admin'):
-        return f"{general_help}\n\n{admin_help}"
+        return f"{general_help}\\n\\n{admin_help}"
     else:
         return general_help
 
