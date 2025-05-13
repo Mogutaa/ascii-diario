@@ -220,8 +220,8 @@ COMANDOS ADMIN:
 /salvar        - Salvar post em edição
 /cancelar      - Cancelar edição
 /title <texto> - Definir título
-/type <tipo>   - Escolher tipo (diario, projeto, reflexao, arte)
-/tags <lista>  - Adicionar tags (separadas por vírgula)
+/type <tipo>   - Escolher tipo <diario, projeto, reflexao, arte>
+/tags <lista>  - Adicionar tags <separadas por vírgula>
 """.strip()
     
     if session.get('admin'):
