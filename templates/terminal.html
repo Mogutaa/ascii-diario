@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>ASCII://DIARIO</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="terminal-container">
+        
+        <pre class="ascii-art-header">
+
+
+ █████╗ ███████╗ ██████╗██╗██╗       ██╗ ██╗██████╗ ██╗ █████╗ ██████╗ ██╗ ██████╗ 
+██╔══██╗██╔════╝██╔════╝██║██║██╗   ██╔╝██╔╝██╔══██╗██║██╔══██╗██╔══██╗██║██╔═══██╗
+███████║███████╗██║     ██║██║╚═╝  ██╔╝██╔╝ ██║  ██║██║███████║██████╔╝██║██║   ██║
+██╔══██║╚════██║██║     ██║██║██╗ ██╔╝██╔╝  ██║  ██║██║██╔══██║██╔══██╗██║██║   ██║
+██║  ██║███████║╚██████╗██║██║╚═╝██╔╝██╔╝   ██████╔╝██║██║  ██║██║  ██║██║╚██████╔╝
+╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝╚═╝   ╚═╝ ╚═╝    ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ 
+                                                                                                                                                                                                                                                                                       
+        </pre>
+
+        <div class="output" id="output">
+            {% for entry in session.history %}
+                <div class="command-line">
+                    <span class="prompt-sign">&gt;</span>
+                    <span class="command">{{ entry.command }}</span>
+                </div>
+                <pre class="response">{{ entry.output }}</pre>
+            {% else %}
+                <div class="welcome-message">Bem vindo! Para começar digite /help para ver os comandos</div>
+            {% endfor %}
+        </div>
+        
+        <form method="POST" action="{{ url_for('handle_command') }}" class="prompt">
+            
+            <span class="prompt-sign">{% if session.admin %}⍟➤{% else %}➤{% endif %}</span>
+            <input type="text" name="command" autocomplete="off" autofocus>
+        </form>
+
+        
+        <pre class="ascii-art-footer">
+                ╔═══════════════════════════════════════════════╗
+                ║  SISTEMA ATIVO ■■■■■■■■■■■■■■■■■ [100%]       ║
+                ║            © 2025 ASCII://DIARIO              ║
+                ╚═══════════════════════════════════════════════╝
+        </pre>
+    </div>
+
+    <script>
+        
+        const outputDiv = document.getElementById('output');
+        
+        function scrollToBottom() {
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+
+        window.onload = scrollToBottom;
+        document.querySelector('form').addEventListener('submit', () => {
+            setTimeout(scrollToBottom, 50);
+        });
+
+        let commandHistory = [];
+        let historyIndex = -1;
+
+        document.querySelector('input').addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    e.target.value = commandHistory[commandHistory.length - 1 - historyIndex];
+                }
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    e.target.value = commandHistory[commandHistory.length - 1 - historyIndex];
+                } else {
+                    historyIndex = -1;
+                    e.target.value = '';
+                }
+            }
+        });
+
+        document.querySelector('input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                commandHistory.unshift(e.target.value);
+                historyIndex = -1;
+            }
+        });
+    </script>
+</body>
+</html>

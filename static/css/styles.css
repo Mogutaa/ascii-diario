@@ -1,0 +1,97 @@
+body {
+    background: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.terminal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.output {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid #0f03;
+    margin-bottom: 10px;
+}
+
+.command-line {
+    margin-bottom: 10px;
+}
+
+.prompt-sign {
+    color: #0f0;
+    margin-right: 5px;
+}
+
+.command {
+    color: #0f03;
+}
+
+.response {
+    color: #0f0;
+    white-space: pre-wrap;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+.welcome-message {
+    color: #0f03;
+    font-style: italic;
+}
+
+.prompt {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #0f03;
+    padding: 10px 0;
+}
+
+input {
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0f03;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0f0;
+}
+/* Centralização dos elementos */
+.ascii-header-container,
+.ascii-footer-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.ascii-art-header,
+.ascii-art-footer {
+    text-align: center;
+}
