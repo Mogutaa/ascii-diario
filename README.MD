@@ -2,6 +2,8 @@
 
 Um blog minimalista rodando no terminal, onde posts são criados e visualizados usando comandos estilo CLI e arte ASCII. Desenvolvido em Python com Flask e MongoDB.
 
+Acesse o blog [clicando aqui](https://asciidiario.onrender.com/)
+
 ![ASCII Art Preview](/static/ascii_diario.png)
 
 ## Funcionalidades
