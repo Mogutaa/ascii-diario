@@ -228,7 +228,7 @@ COMANDOS ADMIN:
     """.strip()
     
     if session.get('admin'):
-        return f"{general_help}\n\\n{admin_help}"
+        return f"{general_help}\n{admin_help}"
     else:
         return general_help
 
