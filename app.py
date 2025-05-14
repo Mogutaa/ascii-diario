@@ -161,8 +161,8 @@ def process_admin_commands(command):
         session['post_data']['content'].append(command)
         content_preview = '\n'.join(session['post_data']['content'][-3:])
         return (
-            f"Conteúdo adicionado (linha {len(session['post_data']['content'])})\\n"
-            f"Últimas linhas:\\n{content_preview}\\n"
+            f"Conteúdo adicionado (linha {len(session['post_data']['content'])})\n"
+            f"Últimas linhas:\n{content_preview}\n"
             f"Continue digitando ou use /salvar"
         )
     
@@ -228,7 +228,7 @@ COMANDOS ADMIN:
     """.strip()
     
     if session.get('admin'):
-        return f"{general_help}\\n\\n{admin_help}"
+        return f"{general_help}\n\\n{admin_help}"
     else:
         return general_help
 
