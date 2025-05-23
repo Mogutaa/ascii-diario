@@ -52,7 +52,7 @@ Acesse o blog -> [clicando aqui](https://asciidiario.onrender.com/)
     python app.py
 
 ## Estrutura do Projeto
-
+```ruby
 ├── app.py          # Aplicação principal
 ├── admin.py        # Rotas administrativas
 ├── auth.py         # Sistema de login
