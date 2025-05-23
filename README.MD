@@ -64,6 +64,7 @@ Acesse o blog -> [clicando aqui](https://asciidiario.onrender.com/)
 |   └── css/        # Estilização do Terminal
 |       └── styles.css 
 └── .env            # Variáveis de ambiente
+```
 
 
 ## Exemplos de Uso
